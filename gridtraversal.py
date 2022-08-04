@@ -31,14 +31,11 @@ class Solution:
         # return: int
         
         # TODO: Write code below to return an int with the solution to the prompt
-        return self.uniqueHelper(0, 0, m, n)
-    def uniqueHelper(self, r, c, m, n):
-        if r == m-1 and c == n-1:
-            return 1
-        elif 0 <= r < m and 0 <= c < n:
-            return self.uniqueHelper(r+1, c, m, n) + self.uniqueHelper(r, c+1, m, n)
-        else:
-            return 0
+        grid = [[1 for x in range(n)] for i in range(m)]
+        for r in range(1, m):
+            for c in range(1, n):
+                grid[r][c] = grid[r-1][c] + grid[r][c-1]
+        return grid[-1][-1]
 
 def main():
     num1 = int(input())
